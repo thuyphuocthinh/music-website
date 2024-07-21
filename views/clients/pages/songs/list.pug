@@ -1,0 +1,29 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug 
+
+block main 
+    .container.my-3 
+        .row 
+            .col-12 
+                +box-head(pageTitle)
+
+        if(songs)
+            .row 
+                each item in songs
+                    .col-12.col-md-6.col-lg-3.mb-3 
+                        .item
+                            .card(style='width: 100%;')
+                                a(href=`/songs/detail/${item.slug}`) 
+                                    img.card-img-top(src=item.avatar alt=item.title)
+                                .card-body
+                                    a(href=`/songs/detail/${item.slug}`) 
+                                        h5.card-title #{item.title}
+                                .card-footer
+                                    p.card-text(style="font-size: 12px;") 
+                                        i.me-3.fa-solid.fa-microphone-lines #{item.infoSinger.fullName}
+                                    p.card-text(style="font-size: 12px; color: blue;")  
+                                        i.me-3.fa-solid.fa-thumbs-up #{item.like}
+                                    p.card-text(style="font-size: 12px;") 
+                                        i.me-3.fa-regular.fa-clock Hom nay
+
+         

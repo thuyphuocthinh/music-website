@@ -1,15 +1,24 @@
-import express from "express";
-import { Express, Request, Response } from "express";
+import express, { Express, Request, Response } from "express";
 import * as dotenv from "dotenv";
+import * as database from "./config/database";
+import clientRoutes from "./routes/clients/index.route";
+const app: Express = express();
 
 // dotenv
 dotenv.config();
 
-const app: Express = express();
+// database
+database.connect();
 
-app.get("/topics", (req: Request, res: Response) => {
-  res.send("Hi");
-});
+// static file
+app.use(express.static("public"));
+
+// pug
+app.set("views", "./views");
+app.set("view engine", "pug");
+
+// routes
+clientRoutes(app);
 
 const port: number | string = process.env.PORT || 5000;
 
