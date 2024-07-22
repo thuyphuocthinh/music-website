@@ -1,0 +1,57 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug 
+
+block main 
+    .container.my-3 
+        .row 
+            .col-12 
+                +box-head(song.title)
+
+        .row.my-4
+            .col-12 
+                .inner-actions.row 
+                    .inner-action.inner-time.col-lg-2.col-md-4.col-6.mb-3 
+                        i.me-3.fa-regular.fa-clock 
+                        span 20/10/2023
+                    .inner-action.col-lg-2.col-md-4.col-6.mb-3 
+                        i.me-3.fa-solid.fa-microphone-lines 
+                        span #{singer.fullName}
+                    .inner-action.col-lg-2.col-md-4.col-6.mb-3 
+                        i.me-3.fa-solid.fa-music  
+                        span #{topic.title}
+                    .inner-action.col-lg-2.col-md-4.col-6.mb-3.inner-like(
+                        button-like=song.id
+                    ) 
+                        i.me-3.fa-regular.fa-thumbs-up
+                        span #{song.like}
+                    .inner-action.col-lg-2.col-md-4.col-6.mb-3 
+                        i.me-3.fa-regular.fa-heart
+                        span Bài hát yêu thích
+
+            .col-12
+                .inner-play.my-4 
+                    .inner-avatar 
+                        img(src=song.avatar, alt=song.title)
+                    .inner-audio.ms-4
+                        div(
+                            id="aplayer"
+                            data-song=song 
+                            data-singer=singer
+                            style="width: 400px;"
+                        )
+
+            .col-md-6.col-12.my-4
+                .card 
+                    .card-header.fw-bold Mô tả 
+
+                    .card-body 
+                        | !{song.description}
+            
+            .col-12.col-md-6.my-4
+                .card 
+                    .card-header.fw-bold Lời bài hát
+
+                    .card-body 
+                        | !{song.lyrics}
+
+         

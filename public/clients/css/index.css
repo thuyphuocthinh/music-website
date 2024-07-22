@@ -1,0 +1,49 @@
+.inner-title,
+.card-header {
+    color: orange;
+    font-weight: bold;
+}
+
+.inner-action {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.inner-action:hover {
+    cursor: pointer;
+    color: orange;
+}
+
+.inner-play {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.inner-like.active {
+    font-weight: 900;
+    color: rgb(0, 51, 255);
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.inner-avatar>img {
+    border-radius: 50%;
+    border: 2px solid orange;
+    width: 100px;
+    height: 100px;
+    animation: rotate 5s linear infinite;
+}
