@@ -2,6 +2,23 @@ nav.navbar.navbar-expand-lg.bg-warning
     .container-fluid.d-flex.py-1
         a.navbar-brand(href='/').fw-bold TPT-entertainment
 
+        form(
+            action="/search/result"
+            method="get"
+        )
+            .form-group.d-flex.mb-0
+                input(
+                    type="text" 
+                    name="keyword"
+                    placeholder="Tìm kiếm bài hát"
+                    class="form-control"
+                    value=keyword
+                ) 
+                button(
+                    type="submit"
+                    class="btn btn-primary"
+                ) Tìm
+
         if (user)
             a(href="/user/profile") #{user.fullName}
             a(href="/users/friends" class="d-inline-block ms-3") Bạn bè

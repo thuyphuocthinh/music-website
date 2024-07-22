@@ -22,7 +22,10 @@ block main
                                     p.card-text(style="font-size: 12px;") 
                                         i.me-3.fa-solid.fa-microphone-lines 
                                         span #{item.infoSong.infoSinger.fullName}
-                                    p.card-text(style="font-size: 12px; color: red;")  
+                                    p.card-text.inner-favourite.active(
+                                        style="font-size: 12px; cursor: pointer;" 
+                                        button-favourite=item.infoSong.id
+                                    )  
                                         i.me-3.fa-regular.fa-heart
                                         span Yêu thích
                                     p.card-text(style="font-size: 12px;") 

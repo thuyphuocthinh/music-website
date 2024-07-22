@@ -54,23 +54,25 @@ if (buttonLike) {
 
 // handle favourite songs
 
-let buttonFavourite = document.querySelector("[button-favourite]");
-if (buttonFavourite) {
-  buttonFavourite.addEventListener("click", () => {
-    const id = buttonFavourite.getAttribute("button-favourite");
-    let typeFavourite = "yes";
-    if (buttonFavourite.classList.contains("active")) {
-      typeFavourite = "no";
-    }
-    const api = `/songs/favourite/${typeFavourite}/${id}`;
-    fetch(api, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === 200) {
-          buttonFavourite.classList.toggle("active");
-        }
-      });
+let listButtonFavourite = document.querySelectorAll("[button-favourite]");
+if (listButtonFavourite.length > 0) {
+  listButtonFavourite.forEach((buttonFavourite) => {
+    buttonFavourite.addEventListener("click", () => {
+      const id = buttonFavourite.getAttribute("button-favourite");
+      let typeFavourite = "yes";
+      if (buttonFavourite.classList.contains("active")) {
+        typeFavourite = "no";
+      }
+      const api = `/songs/favourite/${typeFavourite}/${id}`;
+      fetch(api, {
+        method: "PATCH",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === 200) {
+            buttonFavourite.classList.toggle("active");
+          }
+        });
+    });
   });
 }
