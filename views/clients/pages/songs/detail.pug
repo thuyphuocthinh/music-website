@@ -24,7 +24,10 @@ block main
                     ) 
                         i.me-3.fa-regular.fa-thumbs-up
                         span #{song.like}
-                    .inner-action.col-lg-2.col-md-4.col-6.mb-3 
+                    .inner-action.col-lg-2.col-md-4.col-6.mb-3(
+                        button-favourite=song.id
+                        class=`inner-favourite ${song.isFavourite ? "active" : ""}`
+                    ) 
                         i.me-3.fa-regular.fa-heart
                         span Bài hát yêu thích
 

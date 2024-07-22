@@ -37,15 +37,40 @@ if (buttonLike) {
     }
     const api = `/songs/like/${typeLike}/${id}`;
     fetch(api, {
-      method: "GET",
+      method: "PATCH",
     })
       .then((res) => res.json())
       .then((data) => {
-        const span = buttonLike.querySelector("span");
-        span.innerText = data.data;
-        buttonLike.classList.toggle("active");
+        if (data.status === 200) {
+          const span = buttonLike.querySelector("span");
+          span.innerText = data.data;
+          buttonLike.classList.toggle("active");
+        }
       });
   });
 }
 
 // end like
+
+// handle favourite songs
+
+let buttonFavourite = document.querySelector("[button-favourite]");
+if (buttonFavourite) {
+  buttonFavourite.addEventListener("click", () => {
+    const id = buttonFavourite.getAttribute("button-favourite");
+    let typeFavourite = "yes";
+    if (buttonFavourite.classList.contains("active")) {
+      typeFavourite = "no";
+    }
+    const api = `/songs/favourite/${typeFavourite}/${id}`;
+    fetch(api, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === 200) {
+          buttonFavourite.classList.toggle("active");
+        }
+      });
+  });
+}
