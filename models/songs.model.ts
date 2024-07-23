@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import slug from "mongoose-slug-updater";
+mongoose.plugin(slug);
 
 const sognsSchema = new mongoose.Schema(
   {
@@ -21,6 +23,7 @@ const sognsSchema = new mongoose.Schema(
     slug: {
       type: String,
       slug: "title",
+      unique: true,
     },
     deleted: {
       type: Boolean,

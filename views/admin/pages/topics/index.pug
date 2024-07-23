@@ -1,0 +1,64 @@
+extends ../../layouts/default.pug 
+
+block main 
+    h4(style="margin-top: 4rem;") #{pageTitle}
+
+    .card.my-4 
+        .card-header 
+            h5.p-0.my-2 Actions 
+        .card-body 
+            .row
+                .col-6 
+                .col-6
+                    div.d-flex.justify-content-end 
+                        a(href="/admin/topics/create").btn.btn-primary + Add  
+
+    .card.my-4
+            .card-header
+                h5.p-0.my-2 Các chủ đề 
+            .card-body
+                table.table.table-hover.align-middle
+                    thead
+                        tr
+                            th(scope='col') No.
+                            th(scope='col') Image
+                            th(scope='col') Title
+                            th(scope='col') Status
+                            th(scope='col') Actions
+                    
+                    tbody   
+                        if (topics.length > 0)
+                            each item in topics
+                                tr
+                                    td #{item.index}
+                                    td 
+                                        img(src=item.avatar, alt=item.avatar, style="width: 100px; height: 80px;")
+                                    
+                                    td.fw-bold= item.title 
+                                    
+                                    td 
+                                        if item.status === "active"
+                                            a(
+                                                href="javascript:;" 
+                                                data-status="active" 
+                                                data-id=item.id 
+                                                button-change-status
+                                            ).badge.text-bg-success Active 
+                                        else 
+                                            a(
+                                                href="javascript:;" 
+                                                data-status="inactive" 
+                                                data-id=item.id 
+                                                button-change-status
+                                            ).badge.text-bg-danger Inactive 
+
+                                    td
+                                        
+                                        a(href="javascript:;" data-id=item.id button-delete).btn.btn-danger.me-2 Delete
+                                        a(href=`${prefixAdmin}/products-categories/edit/${item.id}`).btn.btn-warning.me-2 Edit
+                                        a(href=`${prefixAdmin}/products-categories/detail/${item.id}`).btn.btn-primary Detail
+
+                        else 
+                            tr 
+                                td(colspan="6").text-center No product categories found
+                

@@ -1,0 +1,134 @@
+extends ../../layouts/default.pug 
+
+block main 
+    h4(style="margin-top: 4rem;") #{pageTitle}
+
+    form(
+        action=`${prefixAdmin}/songs/create`
+        method="POST"
+        id="form-topics-create"
+        enctype="multipart/form-data"
+    )
+            div(class="form-group mb-4")
+                label(for="title") Tiêu đề
+                input(
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    name="title"
+                    required
+                )
+
+            div(class="form-group mb-4")
+                label(for="topicId") Chủ đề
+                select(
+                    class="form-select"
+                    id="topicId"
+                    name="topicId"
+                    required
+                ) 
+                    option(value="" selected=true disabled=true) -- Chọn chủ đề --
+                    each item in topics 
+                        option(value=item.id) #{item.title}  
+                    
+            div(class="form-group mb-4")
+                label(for="singerId") Ca sĩ
+                select(
+                    class="form-select"
+                    id="singerId"
+                    name="singerId"
+                    required
+                ) 
+                    option(value="" selected=true disabled=true) -- Chọn ca sĩ -- 
+                    each item in singers 
+                        option(value=item.id) #{item.fullName}  
+
+            div(class="form-group mb-4")
+                label(for="description") Mô tả
+                textarea(
+                    class="form-control textarea-mce"
+                    id="description"
+                    name="description"
+                    rows="5"
+                )
+
+            div(class="form-group" upload-image)
+                label(for="avatar") Ảnh
+                input(
+                    type="file"
+                    class="form-control"
+                    id="avatar"
+                    name="avatar"
+                    accept="image/*"
+                    upload-image-input
+                )
+
+                img(
+                    id="preview-thumbnail"
+                    upload-image-preview
+                    class="my-3"
+                )
+            
+            div(class="form-group mb-3" upload-audio)
+                label(for="audio") File âm thanh
+                input(
+                    type="file"
+                    class="form-control"
+                    id="audio"
+                    name="audio"
+                    accept="audio/*"
+                    upload-audio-input
+                )
+
+                audio(
+                    controls 
+                    upload-audio-play
+                    class="my-3"
+                )
+                    source(src="") 
+
+            div(class="form-group mb-4")
+                label(for="lyrics") Lời bài hát
+                textarea(
+                    class="form-control textarea-mce"
+                    id="lyrics"
+                    name="lyrics"
+                    rows="5"
+                )
+
+            div(class="form-group mb-4")
+                label(for="position") Vị trí
+                input(
+                    type="number"
+                    class="form-control"
+                    id="position"
+                    name="position"
+                    placeholder="Tự động tăng"
+                    min="0"
+                )  
+        
+            div(class="form-group mb-4")
+                input(
+                    type="radio"
+                    id="active"
+                    name="status"
+                    value="active"
+                    checked=true
+                    required
+                )  
+                label(for="active") Hoạt động
+
+                input(
+                    type="radio"
+                    id="inactive"
+                    name="status"
+                    value="inactive"
+                    required
+                )  
+                label(for="inactive") Dừng hoạt động
+
+            div(class="form-group")
+                button(
+                    type="submit"
+                    id="btn-submit-pc"
+                ).btn.btn-primary Thêm
