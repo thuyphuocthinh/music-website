@@ -143,3 +143,38 @@ export const favourite = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const listen = async (req: Request, res: Response) => {
+  try {
+    const id: string = req.params.idSong;
+    const song = await Songs.findOne({
+      _id: id,
+      status: "active",
+      deleted: false,
+    });
+
+    const newListen = song.listen + 1;
+
+    await Songs.updateOne(
+      {
+        _id: id,
+      },
+      {
+        listen: newListen,
+      }
+    );
+
+    res.json({
+      status: 200,
+      message: "Cập nhật thành công",
+      data: newListen,
+    });
+    
+  } catch (error) {
+    console.log(error);
+    res.json({
+      status: 400,
+      message: "Cập nhật không thành công",
+    });
+  }
+};

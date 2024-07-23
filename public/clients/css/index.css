@@ -53,3 +53,51 @@
     animation: rotate 5s linear infinite;
     animation-play-state: paused;
 }
+
+/* form-search-suggest */
+
+.form-search {
+    position: relative;
+}
+
+.inner-suggest {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    right: 0;
+    display: none;
+    background-color: #fff;
+    color: #000;
+    z-index: 50;
+    box-shadow: 0 0 6px 2px rgba(0, 0, 0, .2);
+}
+
+.inner-suggest.show {
+    display: block;
+}
+
+.inner-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.inner-list>a {
+    display: flex;
+    align-items: center;
+    padding: 1rem .5rem;
+    text-decoration: none;
+    gap: 10px;
+}
+
+.inner-list>a:hover {
+    background-color: antiquewhite;
+}
+
+.inner-list>a .inner-image {
+    width: 50px;
+}
+
+.inner-list>a .inner-image img {
+    width: 100%;
+    border-radius: 10px;
+}
