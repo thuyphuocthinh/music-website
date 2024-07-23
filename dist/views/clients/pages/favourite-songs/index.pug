@@ -1,0 +1,35 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug 
+
+block main 
+    .container.my-3 
+        .row 
+            .col-12 
+                +box-head(pageTitle)
+
+        if(favouriteSongs)
+            .row 
+                each item in favouriteSongs
+                    .col-12.col-md-6.col-lg-3.mb-3 
+                        .item
+                            .card(style='width: 100%;')
+                                a(href=`/songs/detail/${item.infoSong.slug}`) 
+                                    img.card-img-top(src=item.infoSong.avatar alt=item.infoSong.title)
+                                .card-body
+                                    a(href=`/songs/detail/${item.infoSong.slug}`) 
+                                        h5.card-title #{item.infoSong.title}
+                                .card-footer
+                                    p.card-text(style="font-size: 12px;") 
+                                        i.me-3.fa-solid.fa-microphone-lines 
+                                        span #{item.infoSong.infoSinger.fullName}
+                                    p.card-text.inner-favourite.active(
+                                        style="font-size: 12px; cursor: pointer;" 
+                                        button-favourite=item.infoSong.id
+                                    )  
+                                        i.me-3.fa-regular.fa-heart
+                                        span Yêu thích
+                                    p.card-text(style="font-size: 12px;") 
+                                        i.me-3.fa-regular.fa-clock 
+                                        span Hom nay
+
+         

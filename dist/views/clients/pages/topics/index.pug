@@ -1,0 +1,23 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug 
+
+block main 
+    .container.my-3 
+        .row 
+            .col-12 
+                +box-head(pageTitle)
+
+        if(topics )
+            .row 
+                each item in topics 
+                    .col-12.col-md-6.col-lg-3.mb-3 
+                        .item
+                            .card(style='width: 100%;')
+                                img.card-img-top(src=item.avatar alt=item.title)
+                                .card-body
+                                    h5.card-title #{item.title}
+                                    p.card-text #{item.description}
+                                .card-footer
+                                    a.btn.btn-primary.d-block(href=`/songs/${item.slug}`) Detail
+        
+         

@@ -1,0 +1,13 @@
+nav.navbar.navbar-expand-lg.bg-warning.position-fixed.start-0.end-0.header
+    .container-fluid
+        a.navbar-brand(href='/admin').fw-bold TPT
+        #navbarNav
+            ul.ms-auto.navbar-nav
+                if (user)
+                    li.nav-item
+                        a.active.nav-link.fw-bold #{user.fullName} - #{role.title}
+                    li.nav-item
+                        a.btn.btn-danger(href=`${prefixAdmin}/auth/logout`) Đăng xuất
+                else 
+                    li.nav-item
+                        a.btn.btn-secondary(href=`${prefixAdmin}/auth/login`) Đăng nhập

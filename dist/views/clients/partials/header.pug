@@ -1,0 +1,36 @@
+nav.navbar.navbar-expand-lg.bg-warning
+    .container-fluid.d-flex.py-1
+        a.navbar-brand(href='/').fw-bold TPT-entertainment
+
+        form(
+            action="/search/result"
+            method="get"
+            class="form-search"
+        )
+            .form-group.d-flex.mb-0
+                input(
+                    type="text" 
+                    name="keyword"
+                    placeholder="Tìm kiếm bài hát"
+                    class="form-control"
+                    value=keyword
+                ) 
+                button(
+                    type="submit"
+                    class="btn btn-primary"
+                ) Tìm
+
+            .inner-suggest
+                .inner-list 
+                    
+
+        if (user)
+            a(href="/user/profile") #{user.fullName}
+            a(href="/users/friends" class="d-inline-block ms-3") Bạn bè
+            a(href="/user/logout" class="btn btn-warning") Đăng xuất
+        else
+            .user
+                a(href="/topics" class="btn btn-warning") Chủ đề
+                a(href="/favourite-songs" class="btn btn-warning") Yêu thích
+                a(href="/user/login" class="btn btn-warning") Đăng nhập
+                
